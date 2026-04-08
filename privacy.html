@@ -19,10 +19,19 @@
         .btn {height: 40px;line-height: 40px;border-radius: 4px;padding: 0 20px;background-color: #fff;border: 1px solid #ddd;font-family: PingFangSC-Regular, sans-serif;}
         .content .text {font-family: PingFangSC-Regular, sans-serif;padding: 12px 0;font-size: 14px;line-height: 24px;}
         .content .text + .text {padding-top: 0;}
+        .loader {position: relative;width: 2.5em;height: 2.5em;transform: rotate(165deg)}
+        .loader:before, .loader:after {content: "";position: absolute;top: 50%;left: 50%;display: block;width: 0.5em;height: 0.5em;border-radius: 0.25em;transform: translate(-50%, -50%)}
+        .loader:before {animation: before 2s infinite}
+        .loader:after {animation: after 2s infinite}
     </style>
 </head>
 <body>
     <div class="page">
+        <div style="height: min(30vw, 30vh)"></div>
+        <div style="flex: 1"></div>
+        <div class="app_loader"><div class="loader"></div></div>
+        <div style="height: min(20vw, 20vh)"></div>
+        <div style="height: min(30vw, 30vh)"></div>
     </div>
 </body>
 </html>
@@ -57,6 +66,8 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generated ${info.app_name}ing App Privacy Policy Generator`;
         
         const page = document.querySelector('.page');
+
+        page.innerHTML = '';
 
         page.appendChild(Object.assign(document.createElement('div'), {style: 'height: 60px;'}));
         page.appendChild(Object.assign(document.createElement('div'), {className: 'icon', innerHTML: '<img src="'+BASE_URL+'/logo.jpg?--pro-target=A" id="logo" alt="logo">'}));
