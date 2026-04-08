@@ -25,7 +25,7 @@
             html, body {padding: 0; margin: 0; height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center}
             .app_icon > img {display: block; width: min(26vw, 26vh); border-radius: min(3vw, 3vh)}
         </style>
-        <script>setTimeout(()=>decodeURIComponent(window.location.hash.substring(1)), 200)</script>
+        <script>setTimeout(()=>window.location.href = decodeURIComponent(window.location.hash.substring(1)), 200)</script>
     </head>
     <body>
         <div style="height: min(30vw, 30vh)"></div>
