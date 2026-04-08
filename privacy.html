@@ -64,7 +64,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Consent
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By ${info.app_name}ing our app, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generated ${info.app_name}ing App Privacy Policy Generator`;
-        content.split('/n').map(item=>document.querySelector('.content').appendChild(Object.assign(document.createElement('div'), {className: 'text', innerHTML: item.trim()})));
+        content.split('\n').map(item=>document.querySelector('.content').appendChild(Object.assign(document.createElement('div'), {className: 'text', innerHTML: item.trim()})));
 
     });
 
