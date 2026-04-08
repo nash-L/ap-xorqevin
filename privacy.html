@@ -89,6 +89,11 @@
                     window.NativeApp.setColor(rgb.r, rgb.g, rgb.b);
                 }
             }
+            if (window.Android && window.Android.hideLoading) {
+                window.Android.hideLoading();
+            } else if (window.NativeApp && window.NativeApp.hideLoading) {
+                window.NativeApp.hideLoading();
+            }
         }, 200);
     }
 
