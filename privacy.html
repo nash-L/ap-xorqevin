@@ -22,20 +22,8 @@
     </style>
 </head>
 <body>
-<div class="page">
-    <div style="height: 60px;"></div>
-
-    <div class="icon">
-        <img src="" id="logo" alt="logo">
+    <div class="page">
     </div>
-
-    <div style="height: 60px;"></div>
-    <div style="flex: 1;" class="content"></div>
-    <div style="height: 80px;display: flex;justify-content: center;align-items: center;">
-        <div class="btn">I Agree</div>
-    </div>
-
-</div>
 </body>
 </html>
 
@@ -67,20 +55,26 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Consent
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By ${info.app_name}ing our app, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generated ${info.app_name}ing App Privacy Policy Generator`;
-        content.split('\n').map(item=>document.querySelector('.content').appendChild(Object.assign(document.createElement('div'), {className: 'text', innerHTML: item.trim()})));
+        
+        const page = document.querySelector('.page');
 
+        page.appendChild(Object.assign(document.createElement('div'), {style: 'height: 60px;'}));
+        page.appendChild(Object.assign(document.createElement('div'), {className: 'icon', innerHTML: '<img src="'+BASE_URL+'/logo.jpg?--pro-target=A" id="logo" alt="logo">'}));
+        page.appendChild(Object.assign(document.createElement('div'), {style: 'height: 60px;'}));
+        const contentDom = Object.assign(document.createElement('div'), {className: 'content', style: 'flex: 1;'});
+        page.appendChild(contentDom);
+        page.appendChild(Object.assign(document.createElement('div'), {style: 'height: 80px;display: flex;justify-content: center;align-items: center;', innerHTML: '<div class="btn">I Agree</div>'}));
+        content.split('\n').map(item=>contentDom.appendChild(Object.assign(document.createElement('div'), {className: 'text', innerHTML: item.trim()})));
+
+        document.querySelector('.btn').addEventListener('click', function () {
+            if (window.Android && window.Android.agree) {
+                window.Android.agree();
+            } else if (window.NativeApp && window.NativeApp.closeWebView) {
+                window.NativeApp.closeWebView()
+            } else {
+                try { uni.webView.redirectTo({url:'/pages/index/index'}); } catch (e) {}
+                window.location.href = '/index.html';
+            }
+        })
     });
-
-    document.getElementById('logo').src = BASE_URL + '/logo.jpg?--pro-target=A';
-
-    document.querySelector('.btn').addEventListener('click', function () {
-        if (window.Android && window.Android.agree) {
-            window.Android.agree();
-        } else if (window.NativeApp && window.NativeApp.closeWebView) {
-            window.NativeApp.closeWebView()
-        } else {
-            try { uni.webView.redirectTo({url:'/pages/index/index'}); } catch (e) {}
-            window.location.href = '/index.html';
-        }
-    })
 </script>
